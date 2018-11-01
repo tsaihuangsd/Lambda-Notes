@@ -5,38 +5,38 @@ import NoteListView from './views/NoteListView';
 import NoteView from './views/NoteView';
 import CreateNoteView from './views/CreateNoteView';
 import EditView from './views/EditView';
-// import {Auth0Lock} from 'auth0-lock';
-// import auth0 from 'auth0-js';
+import {Auth0Lock} from 'auth0-lock';
+import auth0 from 'auth0-js';
 
-// var lock = new Auth0Lock(
-//         process.env.REACT_APP_CLIENT_ID,process.env.REACT_APP_DOMAIN_URL
-// );
+var lock = new Auth0Lock(
+        process.env.REACT_APP_CLIENT_ID,process.env.REACT_APP_DOMAIN_URL
+);
 
-// var webAuth = new auth0.WebAuth({
-//         domain: process.env.REACT_APP_DOMAIN_URL,
-//         clientID: process.env.REACT_APP_CLIENT_ID,
-//         redirectUrl: 'http://localhost:5000',
-//         responseType: 'token id_token',
-//         scope: 'openid'
-// });
+var webAuth = new auth0.WebAuth({
+        domain: process.env.REACT_APP_DOMAIN_URL,
+        clientID: process.env.REACT_APP_CLIENT_ID,
+        redirectUrl: 'http://localhost:5000',
+        responseType: 'token id_token',
+        scope: 'openid'
+});
 
-// webAuth.parseHash((err, authResult) => {
-//         if (authResult) {
-//           // Save the tokens from the authResult in local storage or a cookie
-//           let expiresAt = JSON.stringify(
-//             authResult.expiresIn * 1000 + new Date().getTime()
-//           );
-//           localStorage.setItem("access_token", authResult.accessToken);
-//           localStorage.setItem("expires_at", expiresAt);     
-//         } else if (err) {
-//           // Handle errors
-//           console.log(err);
-//         }
-// });
+webAuth.parseHash((err, authResult) => {
+        if (authResult) {
+          // Save the tokens from the authResult in local storage or a cookie
+          let expiresAt = JSON.stringify(
+            authResult.expiresIn * 1000 + new Date().getTime()
+          );
+          localStorage.setItem("access_token", authResult.accessToken);
+          localStorage.setItem("expires_at", expiresAt);     
+        } else if (err) {
+          // Handle errors
+          console.log(err);
+        }
+});
 
 class App extends Component {
         render() {
-                // if (this.isAuthenticated()){
+                if (this.isAuthenticated()){
                         return (
                         <div className="App">
                                 <nav className="navigation-panel">
@@ -64,29 +64,29 @@ class App extends Component {
 
                         </div>
                         );
-                // }      
-        //         else{
-        //                 return(
-        //                         <div>
-        //                                 <h1>You are not logged in</h1>
-        //                                 <div onClick={function(){
-        //                                         lock.show();}}>LOG IN
-        //                                 </div>
-        //                         </div>
-        //                 )
-        //         }         
-        // }
-        // isAuthenticated() {
-        //         // Check whether the current time is past the
-        //         // Access Token's expiry time
-        //         let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
-        //         return new Date().getTime() < expiresAt;
-        // }
-        // logout() {
-        //         // Clear Access Token and ID Token from local storage
-        //         localStorage.removeItem('access_token');
-        //         localStorage.removeItem('expires_at');
-        //         window.location.reload();
+                }      
+                else{
+                        return(
+                                <div>
+                                        <h1>You are not logged in</h1>
+                                        <div onClick={function(){
+                                                lock.show();}}>LOG IN
+                                        </div>
+                                </div>
+                        )
+                }         
+        }
+        isAuthenticated() {
+                // Check whether the current time is past the
+                // Access Token's expiry time
+                let expiresAt = JSON.parse(localStorage.getItem('expires_at'));
+                return new Date().getTime() < expiresAt;
+        }
+        logout() {
+                // Clear Access Token and ID Token from local storage
+                localStorage.removeItem('access_token');
+                localStorage.removeItem('expires_at');
+                window.location.reload();
                 
         }
 
