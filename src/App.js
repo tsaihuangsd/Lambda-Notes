@@ -16,7 +16,7 @@ var webAuth = new auth0.WebAuth({
         domain: process.env.REACT_APP_DOMAIN_URL,
         clientID: process.env.REACT_APP_CLIENT_ID,
         redirectUrl: 'http://localhost:5000',
-        responseType: 'token id_token',
+        // responseType: 'token id_token',
         scope: 'openid'
 });
 
