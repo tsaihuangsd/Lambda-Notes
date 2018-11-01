@@ -22,7 +22,7 @@ export const DELETE_NOTE_FAILURE = 'DELETE_NOTE_FAILURE';
 
 export const getNoteList = () => dispatch => {
     dispatch({ type: NOTES_FETCH_START });
-    const promise = axios.get('http://localhost:9000/api/note/');
+    const promise = axios.get('https://tsai-huang-lambda-notes.herokuapp.com/api/note/');
     promise
         .then(response => {
             dispatch({ type: NOTES_FETCH_COMPLETE, payload: response.data });
