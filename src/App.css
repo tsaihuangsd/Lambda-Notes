@@ -59,6 +59,10 @@
    font-size: 15px;
 }
 
+.navigation-button:hover{
+  cursor:pointer;
+}
+
 .display-panel{
    width: 100%;
    background-color: #F2F1F2;
@@ -118,3 +122,15 @@
   height: 140px;
 }
 
+#title{
+  text-align:center;
+}
+
+#login{
+  text-align: right;
+  
+}
+
+#login:hover{
+  cursor: pointer;
+}

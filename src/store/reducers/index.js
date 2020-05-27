@@ -40,7 +40,7 @@ import {
       case NOTES_FETCH_COMPLETE:
         return { ...state, isGettingNoteList: false, notes: action.payload, actionTookPlace: false};
       case NOTES_FETCH_FAILURE:
-        console.log(action.payload);
+        // console.log(action.payload);
         return { ...state, isGettingNoteList: false, error: action.payload };
 
       case ADD_NOTE_START:
@@ -48,7 +48,7 @@ import {
       case ADD_NOTE_COMPLETE:
         return { ...state, isAdding: false, actionTookPlace: true};
       case ADD_NOTE_FAILURE:
-        console.log(action.payload);
+        // console.log(action.payload);
         return { ...state, isAdding: false, error: action.payload };
 
       case NOTE_GET_START:
@@ -56,7 +56,7 @@ import {
       case NOTE_GET_COMPLETE:
         return { ...state, isGettingNote: false, note: action.payload};
       case NOTE_GET_FAILURE:
-        console.log(action.payload);
+        // console.log(action.payload);
         return { ...state, isGettingNote: false, error: action.payload };
 
       case NOTE_EDIT_START:
@@ -64,7 +64,7 @@ import {
       case NOTE_EDIT_COMPLETE:
         return { ...state, isEditting: false, note: action.payload, actionTookPlace: true };
       case NOTE_EDIT_FAILURE:
-        console.log(action.payload);
+        // console.log(action.payload);
         return { ...state, isEditting: false, error: action.payload };
 
       case DELETE_NOTE_START:
@@ -72,7 +72,7 @@ import {
       case DELETE_NOTE_COMPLETE:
         return { ...state, isDeleting: false, actionTookPlace: true};
       case DELETE_NOTE_FAILURE:
-        console.log(action.payload);
+        // console.log(action.payload);
         return { ...state, isDeleting: false, error: action.payload };
         
       default:

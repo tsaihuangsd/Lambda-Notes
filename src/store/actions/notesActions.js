@@ -1,4 +1,5 @@
 import axios from 'axios';
+// import 
 
 export const NOTES_FETCH_START = 'NOTES_FETCH_START';
 export const NOTES_FETCH_COMPLETE = 'NOTES_FETCH_COMPLETE';
@@ -22,8 +23,8 @@ export const DELETE_NOTE_FAILURE = 'DELETE_NOTE_FAILURE';
 
 export const getNoteList = () => dispatch => {
     dispatch({ type: NOTES_FETCH_START });
-    const promise = axios.get('https://tsai-huang-lambda-notes.herokuapp.com/api/note/');
-    promise
+    // console.log(process.env.REACT_APP_BACKEND_URL);
+    axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/note`)
         .then(response => {
             dispatch({ type: NOTES_FETCH_COMPLETE, payload: response.data });
         })
@@ -35,7 +36,7 @@ export const getNoteList = () => dispatch => {
 export const addNewNote = (note) => dispatch => {
     dispatch({ type: ADD_NOTE_START });
 
-    axios.post('https://tsai-huang-lambda-notes.herokuapp.com/api/note/', note)
+    axios.post(`${process.env.REACT_APP_BACKEND_URL}/api/note`, note)
         .then(response => {
             dispatch({ type: ADD_NOTE_COMPLETE, payload: response.data });
         }).catch(err => {
@@ -45,7 +46,7 @@ export const addNewNote = (note) => dispatch => {
 
 export const getNote = (id) => dispatch => {
     dispatch({ type: NOTE_GET_START });
-    const promise = axios.get(`https://tsai-huang-lambda-notes.herokuapp.com/api/note/${id}/`);
+    const promise = axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/note/${id}/`);
     promise
         .then(response => {
             dispatch({ type: NOTE_GET_COMPLETE, payload: response.data });
@@ -58,7 +59,7 @@ export const getNote = (id) => dispatch => {
 
 export const editNote = (note) => dispatch => {
     dispatch({ type: NOTE_EDIT_START });
-    const promise = axios.put(`https://tsai-huang-lambda-notes.herokuapp.com/api/note/${note['id']}`, note);
+    const promise = axios.put(`${process.env.REACT_APP_BACKEND_URL}/api/note/${note['id']}`, note);
     promise
         .then(response => {
             // console.log(id);
@@ -73,7 +74,7 @@ export const editNote = (note) => dispatch => {
 
 export const deleteNote = (id) => dispatch => {
     dispatch({ type: DELETE_NOTE_START });
-    const promise = axios.delete(`https://tsai-huang-lambda-notes.herokuapp.com/api/note/${id}`);
+    const promise = axios.delete(`${process.env.REACT_APP_BACKEND_URL}/api/note/${id}`);
     promise
         .then(response => {
             dispatch({ type: DELETE_NOTE_COMPLETE  });

@@ -7,6 +7,7 @@ import CreateNoteView from './views/CreateNoteView';
 import EditView from './views/EditView';
 import {Auth0Lock} from 'auth0-lock';
 import auth0 from 'auth0-js';
+import {connect} from 'react-redux';
 
 var lock = new Auth0Lock(
         process.env.REACT_APP_CLIENT_ID,process.env.REACT_APP_DOMAIN_URL
@@ -15,7 +16,7 @@ var lock = new Auth0Lock(
 var webAuth = new auth0.WebAuth({
         domain: process.env.REACT_APP_DOMAIN_URL,
         clientID: process.env.REACT_APP_CLIENT_ID,
-        redirectUrl: 'http://localhost:5000',
+        redirectUrl: process.env.REACT_APP_REDIRECT_URL,
         // responseType: 'token id_token',
         scope: 'openid'
 });
@@ -35,47 +36,6 @@ webAuth.parseHash((err, authResult) => {
 });
 
 class App extends Component {
-        render() {
-                if (this.isAuthenticated()){
-                        return (
-                        <div className="App">
-                                <nav className="navigation-panel">
-                                <h1>Lambda Notes</h1>
-                                <br></br>
-                                <button onClick={() => this.props.history.push("/")}  
-                                        className="notelist-button">
-                                        View Your Notes</button><br></br>
-                                <button onClick={() => this.props.history.push("/create-note")}  
-                                        className="create-note-button">
-                                        + Create New Notes</button>
-                                </nav>
-                                <div className="display-panel">
-                                <Route  exact
-                                        path='/'
-                                        component={NoteListView}/>
-                                <Route  path="/note/:id"
-                                        component={NoteView}/>
-                                <Route  path='/create-note'
-                                        component={CreateNoteView}/>
-                                <Route  path='/edit/:id'
-                                        component={EditView}/>
-                                </div>
-
-
-                        </div>
-                        );
-                }      
-                else{
-                        return(
-                                <div>
-                                        <h1>You are not logged in</h1>
-                                        <div onClick={function(){
-                                                lock.show();}}>LOG IN
-                                        </div>
-                                </div>
-                        )
-                }         
-        }
         isAuthenticated() {
                 // Check whether the current time is past the
                 // Access Token's expiry time
@@ -89,7 +49,47 @@ class App extends Component {
                 window.location.reload();
                 
         }
-
+        render() {
+                if (this.isAuthenticated()){
+                        return (
+                        <div className="App">
+                                <nav className="navigation-panel">
+                                        <h1>Lambda Notes</h1>
+                                        <br></br>
+                                        <button className="navigation-button" onClick={() => this.props.history.push("/")} >
+                                                View Your Notes</button>
+                                        <button className="navigation-button" onClick={() => this.props.history.push("/create-note")}>
+                                                + Create New Notes</button><br></br>
+                                        <button className="navigation-button" onClick={()=> this.logout()}>Log Out</button>
+                                </nav>
+                                <div className="display-panel">
+                                <Route  exact
+                                        path='/'
+                                        component={NoteListView}/>
+                                <Route  path="/note/:id"
+                                        component={NoteView}/>
+                                <Route  path='/create-note'
+                                        component={CreateNoteView}/>
+                                <Route  path='/edit/:id'
+                                        component={EditView}/>
+                                </div>
+                        </div>
+                        );
+                }      
+                else{
+                        return(
+                                <div>
+                                        <h1 id="title">Welcome to MyPostedNotes</h1>
+                                        <nav>
+                                                <div id="login" onClick={function(){
+                                                        lock.show();}}>LOG IN
+                                                </div>
+                                        </nav>
+                                        
+                                </div>
+                        )
+                }         
+        }        
 }
 
 
