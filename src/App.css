@@ -4,7 +4,10 @@
   flex-direction: row;
   height: inherit;
   max-width: 100%;
-  padding: 10px;
+  padding: 10px;  
+  background-image: url("/img/cork.png"); 
+  width: inherit;
+  height: inherit;
 }
 
 .App-logo {
@@ -65,9 +68,14 @@
 
 .display-panel{
    width: 100%;
-   background-color: #F2F1F2;
+   /* background-color: rgb(0, 255, 242); */
    padding-top: 40px;
-   min-height:525px; 
+   min-height:525px;
+   width: inherit;
+   height: inherit;
+   /* background-repeat: repeat-y; // for vertical repeat 
+   background-repeat: repeat-x;  // for horizontal repeat 
+   height:inherit; */
 }
 
 
@@ -122,6 +130,11 @@
   height: 140px;
 }
 
+.route-container{
+  z-index:2;
+  position: relative;
+}
+
 #title{
   text-align:center;
 }
@@ -133,4 +146,14 @@
 
 #login:hover{
   cursor: pointer;
+}
+
+#corkboard{
+  z-index: 1;
+  position: absolute;
+  opacity: .8;
+  top: 0;
+  left: 240px;
+  width: inherit;
+  height: inherit;
 }

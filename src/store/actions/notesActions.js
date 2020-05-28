@@ -23,7 +23,7 @@ export const DELETE_NOTE_FAILURE = 'DELETE_NOTE_FAILURE';
 
 export const getNoteList = () => dispatch => {
     dispatch({ type: NOTES_FETCH_START });
-    // console.log(process.env.REACT_APP_BACKEND_URL);
+    console.log(process.env.REACT_APP_BACKEND_URL);
     axios.get(`${process.env.REACT_APP_BACKEND_URL}/api/note`)
         .then(response => {
             dispatch({ type: NOTES_FETCH_COMPLETE, payload: response.data });

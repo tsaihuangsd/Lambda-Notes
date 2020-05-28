@@ -3,9 +3,9 @@ import './Note.css';
 
 const NoteList =(props) =>{
     return (
-        <div className="notelist-wrapper">
-            <h1>Your Notes:</h1>
-            <div className="note-card-container">
+        <div className="notelist-wrapper">                      
+            <div className="note-card-container">               
+                <h1>Your Notes:</h1>
                 {props.noteList.map(note => (
                     <div className="note-card" 
                         key={note.id}
