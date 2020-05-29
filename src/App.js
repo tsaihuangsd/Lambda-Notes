@@ -55,16 +55,18 @@ class App extends Component {
                         return (
                         <div className="App">
                                 <nav className="navigation-panel">
-                                        <h1>Lambda Notes</h1>
-                                        <br></br>
-                                        <button className="navigation-button" onClick={() => this.props.history.push("/")} >
-                                                View Your Notes</button>
-                                        <button className="navigation-button" onClick={() => this.props.history.push("/create-note")}>
-                                                + Create New Notes</button><br></br>
-                                        <button className="navigation-button" onClick={()=> this.logout()}>Log Out</button>
+                                        <h1>My Posted Notes</h1><br></br>
+                                        <div className="nav-botton-container">
+                                                <button className="navigation-button" onClick={() => this.props.history.push("/")} >
+                                                        View Your Notes</button>
+                                                <button className="navigation-button" onClick={() => this.props.history.push("/create-note")}>
+                                                        + Create New Notes</button>
+                                                <button className="navigation-button" onClick={()=> this.logout()}>Log Out</button>
+                                        </div>
+                                        
                                 </nav>
                                 <div className="display-panel">
-                                        <img id='corkboard' src={corkboard} alt="this is a corkboard"/>
+                                        {/* <img id='corkboard' src={corkboard} alt="this is a corkboard"/> */}
                                         <div className="route-container">
                                                 <Route  exact
                                                         path='/'

@@ -1,11 +1,12 @@
+
+
 .App {
   text-align: center;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   height: inherit;
   max-width: 100%;
-  padding: 10px;  
-  background-image: url("/img/cork.png"); 
+  /* padding: 10px;   */
   width: inherit;
   height: inherit;
 }
@@ -37,10 +38,14 @@
 }
 
 .navigation-panel{
-  width: 240px;
-  min-height: 100%;
-  height: inherit;
-  background-color: #D3D2D3;
+  z-index: 2;
+  position: absolute;
+  top:0;
+  left:0;
+  width: inherit;
+  /* min-height: 100%; */
+  height: 10rem;
+  background: none;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -66,21 +71,25 @@
   cursor:pointer;
 }
 
+/* @import url(./img/corkboard.jpg); */
+
 .display-panel{
    width: 100%;
    /* background-color: rgb(0, 255, 242); */
-   padding-top: 40px;
-   min-height:525px;
+   padding-top: 8rem;
+   min-height:530px;
    width: inherit;
-   height: inherit;
-   /* background-repeat: repeat-y; // for vertical repeat 
-   background-repeat: repeat-x;  // for horizontal repeat 
-   height:inherit; */
+   height: 100%;
+   background-image: url("./img/corkboard.jpg"); 
+   background-repeat: repeat-y; 
+   background-repeat: repeat-x;  
+   height:inherit;
 }
 
 
 .note-container{
   width: 700px;
+  background-color: rgb(253,232,89);
 }
 
 .note-display-panel{
@@ -152,8 +161,8 @@
   z-index: 1;
   position: absolute;
   opacity: .8;
-  top: 0;
-  left: 240px;
-  width: inherit;
-  height: inherit;
+  top:0;
+  left: 0;
+  width: 100%;
+  min-height: 100%;
 }
