@@ -7,7 +7,6 @@ import CreateNoteView from './views/CreateNoteView';
 import EditView from './views/EditView';
 import {Auth0Lock} from 'auth0-lock';
 import auth0 from 'auth0-js';
-import corkboard from './img/corkboard.jpg';
 // import {connect} from 'react-redux';
 
 var lock = new Auth0Lock(
@@ -64,9 +63,8 @@ class App extends Component {
                                                 <button className="navigation-button" onClick={()=> this.logout()}>Log Out</button>
                                         </div>
                                         
-                                </nav>
-                                <div className="display-panel">
-                                        {/* <img id='corkboard' src={corkboard} alt="this is a corkboard"/> */}
+                                </nav>  
+                                <div className="display-panel">                                        
                                         <div className="route-container">
                                                 <Route  exact
                                                         path='/'
